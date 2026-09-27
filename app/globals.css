@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+:root {
+  --mulsetu-green: #3e6700;
+  --mulsetu-green-hover: #345700;
+  --mulsetu-teal: #19686c;
+  --mulsetu-ink: #14161c;
+  --mulsetu-muted: #5c6158;
+  --mulsetu-paper: #f4f1ea;
+  --mulsetu-card: #fbfaf7;
+  --mulsetu-line: rgba(20, 22, 28, 0.1);
+  --mulsetu-gradient: linear-gradient(135deg, #3e6700 0%, #19686c 100%);
+}
+
+@theme inline {
+  --color-forest: var(--mulsetu-green);
+  --color-teal: var(--mulsetu-teal);
+  --color-ink: var(--mulsetu-ink);
+  --color-muted: var(--mulsetu-muted);
+  --color-paper: var(--mulsetu-paper);
+  --color-card: var(--mulsetu-card);
+  --font-sans: var(--font-inter), Inter, sans-serif;
+  --font-display: var(--font-geist), Geist, Inter, sans-serif;
+}
+
+body {
+  background:
+    radial-gradient(540px 260px at 88% -20px, rgba(62, 103, 0, 0.11), transparent 62%),
+    radial-gradient(480px 280px at 0% 108%, rgba(25, 104, 108, 0.08), transparent 58%),
+    #f6f7f3;
+  color: var(--mulsetu-ink);
+  overflow-x: clip;
+  font-family: var(--font-inter), Inter, sans-serif;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 50;
+  border-radius: 12px;
+  background: white;
+  padding: 0.6rem 1rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--mulsetu-teal);
+  outline-offset: 3px;
+}
+
+.press {
+  transition: transform 140ms ease, background-color 140ms ease;
+}
+
+.press:active {
+  transform: scale(0.98);
+}
+
+.enter {
+  animation: rise 520ms ease-out both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.action-card {
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.action-card:hover {
+  transform: translateY(-2px);
+  background: #f8fbf6;
+  box-shadow: 0 10px 22px rgba(20, 22, 28, 0.08);
+}
+
+.nfc-ring {
+  position: relative;
+}
+
+.nfc-ring::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 999px;
+  border: 1px solid rgba(182, 232, 106, 0.45);
+  animation: nfc-pulse 2.8s ease-out infinite;
+}
+
+@keyframes nfc-pulse {
+  0% { transform: scale(0.86); opacity: 0.7; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enter,
+  .nfc-ring::after {
+    animation: none;
+  }
+
+  .action-card:hover {
+    transform: none;
+  }
+}
