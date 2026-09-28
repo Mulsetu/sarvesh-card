@@ -2,12 +2,20 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { cardLabel, profile } from "@/lib/profile";
-import { copyCardLink, shareCard, whatsAppCardUrl } from "@/lib/share";
+import { copyCardLink, loadCardPhoto, shareCard, whatsAppCardUrl } from "@/lib/share";
 
 export function ShareSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
   const titleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
   const [notice, setNotice] = useState("");
+  const photoRef = useRef<File | null>(null);
+
+  useEffect(() => {
+    if (!open || photoRef.current) return;
+    loadCardPhoto().then((file) => {
+      photoRef.current = file;
+    });
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -22,7 +30,7 @@ export function ShareSheet({ open, onClose }: { open: boolean; onClose: () => vo
   if (!open) return null;
 
   async function onShare() {
-    const result = await shareCard();
+    const result = await shareCard(photoRef.current);
     if (result === "shared") setNotice("Share sheet opened.");
     if (result === "unavailable") setNotice("Sharing is not available here. Copy the link instead.");
   }

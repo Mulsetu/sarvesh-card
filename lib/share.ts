@@ -1,9 +1,31 @@
 import { profile, shareMessage, shareTitle } from "@/lib/profile";
 
-export async function shareCard() {
+export const cardPhotoPath = "/share-card.png";
+
+/**
+ * Downloads the card photo ahead of time: Safari only allows navigator.share() straight
+ * from the tap, so the file has to be ready before the visitor presses Share.
+ */
+export async function loadCardPhoto() {
+  try {
+    const response = await fetch(cardPhotoPath);
+    if (!response.ok) return null;
+    return new File([await response.blob()], "Sarvesh-Gadkari-Mulsetu-card.png", { type: "image/png" });
+  } catch {
+    return null;
+  }
+}
+
+/** Shares the card photo with the message and link as its caption, or just the link where files can't be shared. */
+export async function shareCard(photo?: File | null) {
   if (typeof navigator === "undefined" || typeof navigator.share !== "function") return "unavailable" as const;
   try {
-    await navigator.share({ title: shareTitle, text: shareMessage, url: profile.profileUrl });
+    if (photo && navigator.canShare?.({ files: [photo] })) {
+      // With a file attached many apps drop the separate `url` field, so the link goes in the text.
+      await navigator.share({ files: [photo], title: shareTitle, text: `${shareMessage}\n${profile.profileUrl}` });
+    } else {
+      await navigator.share({ title: shareTitle, text: shareMessage, url: profile.profileUrl });
+    }
     return "shared" as const;
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") return "dismissed" as const;
