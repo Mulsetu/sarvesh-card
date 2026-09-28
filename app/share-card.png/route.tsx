@@ -1,11 +1,11 @@
 import { ImageResponse } from "next/og";
-import { c, FrontCard, loadCardArt } from "@/lib/card-art";
+import { c, CombinedCard, loadCardArt } from "@/lib/card-art";
 import { cardLabel } from "@/lib/profile";
 
 // Rendered once at build time; attached as a photo when visitors tap "Share Card".
 export const dynamic = "force-static";
 
-const size = { width: 1080, height: 1350 };
+const size = { width: 1600, height: 1080 };
 
 export async function GET() {
   const art = await loadCardArt();
@@ -26,8 +26,12 @@ export async function GET() {
           backgroundImage: c.pageGlow,
         }}
       >
-        <FrontCard photo={art.photo} logo={art.logo} s={2.45} />
-        <div style={{ marginTop: 44, display: "flex", fontSize: 34, fontWeight: 700, color: c.forest }}>{cardLabel}</div>
+        <CombinedCard photo={art.photo} logo={art.logo} mark={art.mark} />
+        {/* Instagram and Facebook drop the share caption, so the card link is printed on the photo too. */}
+        <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 14, fontSize: 30, color: c.muted }}>
+          Open my digital card
+          <div style={{ display: "flex", padding: "8px 24px", borderRadius: 999, backgroundImage: c.brand, color: "white", fontWeight: 700 }}>{cardLabel}</div>
+        </div>
       </div>
     ),
     { ...size, fonts: art.fonts },

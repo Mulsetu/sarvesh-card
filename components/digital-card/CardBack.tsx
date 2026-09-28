@@ -36,25 +36,29 @@ export function CardBack({ onFlip }: { onFlip: () => void }) {
       <h2 className="relative mt-4 font-serif text-[1.7rem] leading-[1.05] font-semibold text-balance">Your Dedicated Technology Team.</h2>
 
       {/* Box 1: services */}
-      <section className="relative mt-4 rounded-[18px] bg-white/[0.06] p-3.5 ring-1 ring-white/10" aria-labelledby="services-heading">
+      <section className="relative mt-4 rounded-[18px] bg-card p-3.5 text-ink shadow-[0_12px_26px_-10px_rgba(0,0,0,0.45)]" aria-labelledby="services-heading">
         <div className="flex items-center justify-between gap-2">
-          <h3 id="services-heading" className="eyebrow text-[10px] text-lime">
+          <h3 id="services-heading" className="eyebrow flex items-center gap-2 text-[10px] text-forest">
             Our Services
+            <span className="h-px w-6 bg-forest/35" aria-hidden="true" />
           </h3>
           <a
             href={profile.website}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-0.5 text-[11px] font-medium text-white/60 hover:text-white"
+            className="flex items-center gap-0.5 text-[11px] font-medium text-muted hover:text-forest"
           >
             {displayWebsite(profile.website)}
             <ArrowUpRight className="size-3" aria-hidden="true" />
           </a>
         </div>
-        <ul className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2.5">
-          {services.map((item) => (
-            <li key={item.label} className="flex min-w-0 items-center gap-2 text-[12px] leading-tight font-medium text-white/90">
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-lime/12 text-lime ring-1 ring-lime/20">
+        <ul className="mt-3 grid grid-cols-2 gap-y-2.5">
+          {services.map((item, i) => (
+            <li
+              key={item.label}
+              className={`flex min-w-0 items-center gap-2 text-[12px] leading-tight font-medium text-ink/90 ${i % 2 ? "border-l border-ink/8 pl-2.5" : "pr-2"}`}
+            >
+              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-forest text-white">
                 <item.icon className="size-3.5" aria-hidden="true" />
               </span>
               <span className="min-w-0">{item.label}</span>

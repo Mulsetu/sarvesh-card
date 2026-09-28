@@ -1,6 +1,8 @@
 "use client";
 
+import { Link2, MessageCircle, Share2, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { cardLabel, profile } from "@/lib/profile";
 import { copyCardLink, loadCardPhoto, shareCard, whatsAppCardUrl } from "@/lib/share";
 
@@ -19,7 +21,7 @@ export function ShareSheet({ open, onClose }: { open: boolean; onClose: () => vo
 
   useEffect(() => {
     if (!open) return;
-    dialogRef.current?.querySelector<HTMLElement>("button, a")?.focus();
+    dialogRef.current?.querySelector<HTMLElement>("[data-autofocus]")?.focus();
     function onKey(event: KeyboardEvent) {
       if (event.key === "Escape") onClose();
     }
@@ -40,49 +42,75 @@ export function ShareSheet({ open, onClose }: { open: boolean; onClose: () => vo
     setNotice(ok ? "Link copied." : "Select the address below and copy it.");
   }
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-[rgba(20,22,28,0.4)] p-3 sm:items-center">
-      <button type="button" className="absolute inset-0" aria-label="Close share" onClick={onClose} />
+  // Portalled to <body>: the trigger sits inside dark, white-text sections and inside
+  // animated (transformed) containers, which would recolour and trap a fixed overlay.
+  return createPortal(
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-[rgba(16,24,20,0.45)] p-3 text-ink backdrop-blur-[2px] sm:items-center">
+      <button type="button" className="absolute inset-0 cursor-default" aria-label="Close share" onClick={onClose} />
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative w-full max-w-[400px] rounded-[24px] bg-card p-5 shadow-[0_16px_40px_rgba(20,22,28,0.14)]"
+        className="relative w-full max-w-[400px] rounded-[26px] border border-forest/10 bg-card p-5 pb-[max(20px,env(safe-area-inset-bottom))] shadow-[0_24px_60px_-12px_rgba(16,40,28,0.35)]"
       >
-        <p className="text-[11px] tracking-[0.16em] text-teal uppercase">Share</p>
-        <h2 id={titleId} className="mt-2 font-display text-[1.45rem] font-semibold tracking-[-0.03em]">
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute top-3.5 right-3.5 grid size-8 place-items-center rounded-full text-ink/50 hover:bg-ink/5"
+        >
+          <X className="size-4" aria-hidden="true" />
+        </button>
+        <p className="eyebrow text-[10.5px] text-teal">Share my card</p>
+        <h2 id={titleId} className="mt-2 font-serif text-[1.9rem] leading-none font-semibold">
           {profile.name}
         </h2>
-        <p className="mt-1 text-sm text-muted">
+        <p className="mt-1.5 text-[13.5px] text-muted">
           {profile.title}
           <span className="px-1.5 text-ink/30">·</span>
           Mulsetu
         </p>
-        <p className="mt-3 text-sm">{cardLabel}</p>
-        <div className="mt-5 grid gap-2">
-          <button type="button" className="press h-11 rounded-[12px] bg-forest text-sm font-semibold text-white" onClick={onShare}>
+        <p className="mt-2 text-[13px] font-medium text-leaf">{cardLabel}</p>
+        <div className="mt-5 grid gap-2.5">
+          <button
+            type="button"
+            className="press flex h-12 items-center justify-center gap-2 rounded-full text-[14.5px] font-semibold text-white shadow-[0_10px_22px_-10px_rgba(29,104,72,0.6)]"
+            style={{ background: "var(--mulsetu-brand)" }}
+            onClick={onShare}
+            data-autofocus
+          >
+            <Share2 className="size-4" aria-hidden="true" />
             Share
           </button>
-          <a
-            href={whatsAppCardUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="press flex h-11 items-center justify-center rounded-[12px] bg-[#f3f1eb] text-sm font-semibold"
-          >
-            WhatsApp
-          </a>
-          <button type="button" className="press h-11 rounded-[12px] bg-[#f3f1eb] text-sm font-semibold" onClick={onCopy}>
-            Copy link
-          </button>
+          <div className="grid grid-cols-2 gap-2.5">
+            <a
+              href={whatsAppCardUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="press flex h-12 items-center justify-center gap-2 rounded-full border border-ink/10 bg-white text-[14px] font-semibold text-ink"
+            >
+              <MessageCircle className="size-4 text-forest" aria-hidden="true" />
+              WhatsApp
+            </a>
+            <button
+              type="button"
+              className="press flex h-12 items-center justify-center gap-2 rounded-full border border-ink/10 bg-white text-[14px] font-semibold text-ink"
+              onClick={onCopy}
+            >
+              <Link2 className="size-4 text-teal" aria-hidden="true" />
+              Copy link
+            </button>
+          </div>
         </div>
         {notice ? (
-          <p className="mt-3 text-sm text-teal" role="status">
+          <p className="mt-3 text-center text-[13px] font-medium text-teal" role="status">
             {notice}
           </p>
         ) : null}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
