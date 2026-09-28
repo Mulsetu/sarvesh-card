@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DigitalCard } from "@/components/digital-card/DigitalCard";
+import { DigitalBusinessCard } from "@/components/digital-card/DigitalBusinessCard";
 import { profile, shareText, shareTitle } from "@/lib/profile";
 
 export const metadata: Metadata = {
@@ -8,7 +8,13 @@ export const metadata: Metadata = {
   alternates: { canonical: profile.profileUrl },
 };
 
-export default function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ face?: string }>;
+}) {
+  const query = await searchParams;
+
   return (
     <main id="content">
       <script
@@ -27,7 +33,7 @@ export default function HomePage() {
           }).replace(/</g, "\\u003c"),
         }}
       />
-      <DigitalCard />
+      <DigitalBusinessCard startOnBack={query.face === "back"} />
     </main>
   );
 }

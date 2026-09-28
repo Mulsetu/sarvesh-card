@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { QrCode } from "@/components/qr/QrCode";
 import { ShareButton } from "@/components/share/ShareButton";
 import { cardLabel, profile, shareText } from "@/lib/profile";
@@ -27,9 +28,9 @@ export default function QrPage() {
       <div className="mt-6 grid w-full gap-2">
         <ShareButton className="press h-11 rounded-[12px] bg-forest text-sm font-semibold text-white" label="Share my card" />
         <CopyLink />
-        <a href="/" className="press flex h-11 items-center justify-center rounded-[12px] border border-ink/10 text-sm font-semibold">
+        <Link href="/" className="press flex h-11 items-center justify-center rounded-[14px] border border-ink/10 text-sm font-semibold">
           Open digital card
-        </a>
+        </Link>
       </div>
     </main>
   );

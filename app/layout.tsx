@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Inter } from "next/font/google";
+import { RegisterServiceWorker } from "@/components/pwa/RegisterServiceWorker";
 import { profile, shareText, shareTitle } from "@/lib/profile";
 import "./globals.css";
 
@@ -12,6 +13,11 @@ export const metadata: Metadata = {
   title: { default: shareTitle, template: "%s" },
   description: shareText,
   alternates: { canonical: profile.profileUrl },
+  appleWebApp: {
+    capable: true,
+    title: "Mulsetu ID",
+    statusBarStyle: "default",
+  },
   icons: {
     icon: [{ url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" }],
     apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
@@ -44,6 +50,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           Skip to content
         </a>
         {children}
+        <RegisterServiceWorker />
       </body>
     </html>
   );

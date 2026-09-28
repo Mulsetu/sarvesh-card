@@ -7,7 +7,7 @@ export const profile = {
   whatsapp: "+918485860323",
   linkedin: "https://www.linkedin.com/in/sarvesh-gadkari-071483259/",
   website: "https://mulsetu.com",
-  profileUrl: "https://sarvesh.mulsetu.com",
+  profileUrl: "https://sarvesh.mulsetu.com/",
   bio: "Founder & CEO of Mulsetu, building digital products, AI systems and business software for growing businesses.",
   photo: "/profile/sarvesh-gadkari.jpg",
   logo: "/branding/mulsetu-logo.png",

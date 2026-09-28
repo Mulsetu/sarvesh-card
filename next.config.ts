@@ -5,11 +5,8 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(process.cwd()),
   },
-  async redirects() {
-    return [
-      { source: "/sarvesh", destination: "/", permanent: true },
-      { source: "/sarvesh/qr", destination: "/qr", permanent: true },
-    ];
+  async rewrites() {
+    return [{ source: "/sarvesh-gadkari.vcf", destination: "/api/vcard" }];
   },
 };
 

@@ -15,8 +15,8 @@ export async function GET() {
   return new NextResponse(buildVCard(photo), {
     headers: {
       "Content-Type": "text/vcard; charset=utf-8",
-      "Content-Disposition": 'attachment; filename="Sarvesh-Gadkari.vcf"',
-      "Cache-Control": "public, max-age=3600",
+      "Content-Disposition": 'inline; filename="Sarvesh-Gadkari.vcf"',
+      "Cache-Control": "no-store",
     },
   });
 }

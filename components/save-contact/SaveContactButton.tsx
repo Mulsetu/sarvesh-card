@@ -8,16 +8,14 @@ export function SaveContactButton() {
 
   return (
     <a
-      href="/api/vcard"
-      className="press flex h-[54px] items-center gap-3 rounded-[16px] px-3.5 text-white shadow-[0_10px_22px_rgba(47,106,24,0.28)]"
-      style={{ background: "linear-gradient(100deg, #3d7a12 0%, #1f6d4a 55%, #17686c 100%)" }}
+      href="/sarvesh-gadkari.vcf"
+      className="press flex h-12 items-center gap-3 rounded-full px-4 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(47,122,24,0.28)]"
+      style={{ background: "linear-gradient(100deg, #3e6700 0%, #1d6848 58%, #19686c 100%)" }}
       onClick={() => setLabel("Opening contact")}
     >
-      <span className="grid size-8 place-items-center rounded-full bg-white/15">
-        <UserRound className="size-[18px]" aria-hidden="true" />
-      </span>
-      <span className="flex-1 text-left text-[15px] font-semibold tracking-[-0.01em]">{label}</span>
-      <ArrowRight className="size-[18px]" aria-hidden="true" />
+      <UserRound className="size-5" aria-hidden="true" />
+      <span className="flex-1 tracking-[0.04em]">{label}</span>
+      <ArrowRight className="size-5" aria-hidden="true" />
     </a>
   );
 }
