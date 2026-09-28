@@ -17,4 +17,13 @@ export const profile = {
 export const cardLabel = "sarvesh.mulsetu.com";
 
 export const shareTitle = "Sarvesh Gadkari — Founder & CEO, Mulsetu";
-export const shareText = "Connect with Sarvesh Gadkari, Founder & CEO of Mulsetu.";
+/** Page description used by search engines and link previews. */
+export const shareText = "Digital visiting card of Sarvesh Gadkari, Founder & CEO of Mulsetu. Save my contact, call, WhatsApp or email me directly.";
+
+/** The personal note sent along with the link when someone shares the card (the link is appended by the share target). */
+export const shareMessage = [
+  "Hi! Here's my digital visiting card.",
+  "",
+  `${profile.name} — ${profile.title}, ${profile.company}`,
+  "Tap the link to view my card and save my contact:",
+].join("\n");

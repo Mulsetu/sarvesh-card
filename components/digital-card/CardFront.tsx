@@ -24,7 +24,7 @@ export function CardFront({ onFlip }: { onFlip: () => void }) {
           <div className="relative size-full overflow-hidden rounded-full">
             {/* Oversized frame zooms in on the face without transforms (Safari clips those unreliably). */}
             <div className="absolute" style={{ left: "-59%", top: "-9%", width: "190%", height: "190%" }}>
-              <Image src={profile.photo} alt={profile.name} fill priority sizes="290px" className="object-cover object-[57%_0%]" />
+              <Image src={profile.photo} alt={profile.name} fill priority sizes="340px" className="object-cover object-[57%_0%]" />
             </div>
           </div>
         </div>

@@ -276,7 +276,7 @@ body {
 }
 
 .portrait {
-  width: clamp(124px, 38vw, 148px);
+  width: clamp(150px, 46vw, 180px);
   aspect-ratio: 1;
 }
 

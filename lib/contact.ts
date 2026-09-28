@@ -42,30 +42,14 @@ export function displayUrl() {
 export const vcardPath = "/sarvesh-gadkari.vcf";
 
 /**
- * Android intent that opens the phone's Contacts app on a pre-filled "new contact"
- * screen (ContactsContract.Intents.Insert). If no app accepts it, Chrome follows
- * browser_fallback_url, which downloads the vCard exactly as before.
- * The intent can't carry a photo or URLs, so the website/LinkedIn go into notes.
- */
-export function androidContactIntent(fallbackUrl: string) {
-  const extras: string[] = [`S.name=${encodeURIComponent(profile.name)}`];
-  const tel = phoneHref(profile.phone);
-  if (tel) extras.push(`S.phone=${encodeURIComponent(tel.replace("tel:", ""))}`, "i.phone_type=2");
-  if (profile.email) extras.push(`S.email=${encodeURIComponent(profile.email)}`, "i.email_type=2");
-  extras.push(`S.company=${encodeURIComponent(profile.company)}`, `S.job_title=${encodeURIComponent(profile.title)}`);
-  const notes = [profile.website, profile.linkedin, profile.profileUrl].filter(Boolean).join("\n");
-  if (notes) extras.push(`S.notes=${encodeURIComponent(notes)}`);
-  extras.push(`S.browser_fallback_url=${encodeURIComponent(fallbackUrl)}`);
-  return `intent:#Intent;action=android.intent.action.INSERT;type=vnd.android.cursor.dir/contact;${extras.join(";")};end`;
-}
-
-/**
  * How "Save Contact" should behave on this browser:
  * - "vcard": iPhone/iPad (Safari, Chrome, Edge, Firefox, SFSafariViewController) and desktop open the
  *   vCard as an "Add Contact" sheet or file.
- * - "android": regular Android browsers get the Contacts intent (vCard download as fallback).
- * - "in-app": Instagram/Facebook/LinkedIn/etc. WebViews can neither open intents nor show the
- *   iOS contact sheet, so the visitor is asked to open the page in their real browser.
+ * - "android": Android browsers can only download the vCard; websites can't open the Contacts
+ *   app there (Chrome only launches apps that accept BROWSABLE intents, and Contacts doesn't),
+ *   so the visitor is shown the "tap Open, then Save" steps.
+ * - "in-app": Instagram/Facebook/LinkedIn/etc. WebViews can't handle the vCard at all, so the
+ *   visitor is asked to open the page in their real browser.
  */
 export function saveContactMode(userAgent: string): "vcard" | "android" | "in-app" {
   const knownInApp = /FBAN|FBAV|FB_IAB|Instagram|LinkedInApp|Line\/|Snapchat|TikTok|musical_ly|Twitter|MicroMessenger|; wv\)/i;
