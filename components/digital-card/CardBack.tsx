@@ -20,20 +20,18 @@ export function CardBack({ onFlip }: { onFlip: () => void }) {
           <Image src="/branding/mulsetu-logo-on-dark.png" alt="Mulsetu" width={656} height={443} className="h-auto w-[78px]" />
           <p className="mt-1 text-[9px] tracking-[0.12em] text-white/55 uppercase">People · Technology · Products · Impact</p>
         </div>
-        <h2 className="mt-3 font-display text-[1.35rem] leading-[1.05] font-semibold tracking-[-0.03em]">
-          Your Dedicated
-          <br />
-          Technology Team.
+        <h2 className="mt-2 font-display text-[1.2rem] leading-[1.05] font-semibold tracking-[-0.03em]">
+          Your Dedicated Technology Team.
         </h2>
-        <p className="mt-2 text-[12px] leading-4 text-white/78">
-          We design, build and scale intelligent digital solutions that drive growth, efficiency, and innovation.
+        <p className="mt-1.5 text-[11px] leading-4 text-white/78">
+          We design, build and scale intelligent digital solutions for businesses.
         </p>
-        <p className="mt-2 text-[10px] tracking-[0.1em] text-white/60 uppercase">AI • Software • Products • Automation</p>
+        <p className="mt-1.5 text-[10px] tracking-[0.08em] text-white/60 uppercase">AI • Software • Products • Automation</p>
         <a
           href={profile.tagxUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 flex items-center gap-3 rounded-[14px] bg-black/20 p-2.5 ring-1 ring-white/10"
+          className="mt-2 flex items-center gap-2 rounded-[14px] bg-black/20 p-2 ring-1 ring-white/10"
         >
           <span className="min-w-0 flex-1">
             <span className="text-[9px] tracking-[0.12em] text-[#c6ef86] uppercase">Featured product</span>

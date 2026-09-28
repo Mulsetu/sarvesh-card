@@ -6,14 +6,12 @@ import { SaveContactButton } from "@/components/save-contact/SaveContactButton";
 export function DigitalBusinessCard({ startOnBack = false }: { startOnBack?: boolean }) {
   return (
     <div className="stage">
-      <FlipCard startFlipped={startOnBack} />
-      <div className="mt-3">
+      <div className="stage-card">
+        <FlipCard startFlipped={startOnBack} />
+      </div>
+      <div className="stage-actions">
         <SaveContactButton />
-      </div>
-      <div className="mt-2">
         <ContactGrid />
-      </div>
-      <div className="mt-3">
         <ConnectSection />
       </div>
     </div>

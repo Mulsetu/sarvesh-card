@@ -20,8 +20,8 @@ export function ConnectSection() {
           <p className="mt-1 text-[11px] leading-4 text-white/75">Tap the NFC tag on the back of my phone, or scan the QR code.</p>
         </div>
         <div className="shrink-0 text-center">
-          <Link href="/qr" className="inline-flex rounded-[10px] bg-white p-1.5" aria-label="Open the large QR code">
-            <QrCode size={86} framed={false} />
+          <Link href="/qr" className="inline-flex rounded-[10px] bg-white p-1" aria-label="Open the large QR code">
+            <QrCode size={72} framed={false} />
           </Link>
         </div>
       </div>
