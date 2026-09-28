@@ -13,7 +13,7 @@ export function CopyLink() {
   }
 
   return (
-    <button type="button" className="press h-11 rounded-[12px] border border-ink/10 text-sm font-semibold" onClick={onCopy}>
+    <button type="button" className="press h-11 rounded-full border border-ink/10 bg-white text-sm font-semibold" onClick={onCopy}>
       {label}
     </button>
   );

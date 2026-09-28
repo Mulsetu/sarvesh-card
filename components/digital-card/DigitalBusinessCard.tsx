@@ -14,6 +14,7 @@ export function DigitalBusinessCard({ startOnBack = false }: { startOnBack?: boo
         <ContactGrid />
         <ConnectSection />
       </div>
+      <p className="stage-foot">Mulsetu · Digital Card</p>
     </div>
   );
 }

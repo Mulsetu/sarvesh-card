@@ -9,13 +9,17 @@ export function SaveContactButton() {
   return (
     <a
       href="/sarvesh-gadkari.vcf"
-      className="press flex h-11 items-center gap-3 rounded-full px-4 text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(47,122,24,0.28)]"
-      style={{ background: "linear-gradient(100deg, #3e6700 0%, #1d6848 58%, #19686c 100%)" }}
+      className="press flex h-13 items-center gap-3 rounded-full pr-2 pl-2 text-[15px] font-semibold text-white shadow-[0_14px_28px_-10px_rgba(29,104,72,0.55),inset_0_1px_0_rgba(255,255,255,0.18)]"
+      style={{ background: "var(--mulsetu-brand)" }}
       onClick={() => setLabel("Opening contact")}
     >
-      <UserRound className="size-5" aria-hidden="true" />
-      <span className="flex-1 tracking-[0.04em]">{label}</span>
-      <ArrowRight className="size-5" aria-hidden="true" />
+      <span className="grid size-9 shrink-0 place-items-center rounded-full bg-white/15">
+        <UserRound className="size-[18px]" aria-hidden="true" />
+      </span>
+      <span className="flex-1 tracking-[0.02em]">{label}</span>
+      <span className="grid size-9 shrink-0 place-items-center rounded-full bg-card text-forest">
+        <ArrowRight className="size-[18px]" aria-hidden="true" />
+      </span>
     </a>
   );
 }

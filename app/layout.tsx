@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Inter } from "next/font/google";
+import { Cormorant_Garamond, Geist, Inter } from "next/font/google";
 import { RegisterServiceWorker } from "@/components/pwa/RegisterServiceWorker";
 import { profile, shareText, shareTitle } from "@/lib/profile";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
+const cormorant = Cormorant_Garamond({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-cormorant", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sarvesh.mulsetu.com"),
@@ -37,14 +38,15 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f4f1ea",
+  themeColor: "#f5f3ee",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-      <html lang="en" className={`${inter.variable} ${geist.variable} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} ${geist.variable} ${cormorant.variable} h-full antialiased`}>
       <body className="min-h-full">
         <a className="skip-link" href="#content">
           Skip to content

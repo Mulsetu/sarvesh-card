@@ -39,6 +39,16 @@ export function displayUrl() {
   return cardLabel;
 }
 
+export function displayPhone(value: string) {
+  const digits = value.replace(/\D/g, "");
+  if (digits.length === 12 && digits.startsWith("91")) return `+91 ${digits.slice(2, 7)} ${digits.slice(7)}`;
+  return value.trim();
+}
+
+export function displayWebsite(url: string) {
+  return url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+}
+
 function splitName(name: string) {
   const parts = name.trim().split(/\s+/).filter(Boolean);
   if (parts.length < 2) return { first: parts[0] || "", last: "" };

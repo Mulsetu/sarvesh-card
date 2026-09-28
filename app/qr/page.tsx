@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { QrCode } from "@/components/qr/QrCode";
 import { ShareButton } from "@/components/share/ShareButton";
@@ -13,24 +14,24 @@ export const metadata: Metadata = {
 
 export default function QrPage() {
   return (
-    <main id="content" className="mx-auto flex min-h-dvh w-full max-w-[400px] flex-col items-center bg-white px-6 py-10 text-center">
-      <p className="text-[11px] font-semibold tracking-[0.18em] text-teal uppercase">Mulsetu</p>
-      <h1 className="mt-3 font-display text-[1.8rem] font-semibold tracking-[-0.03em]">Scan to connect</h1>
-      <p className="mt-2 text-sm text-muted">
-        {profile.name}
-        <br />
-        {profile.title}
-      </p>
-      <div className="mt-8">
-        <QrCode size={280} />
-      </div>
-      <p className="mt-4 text-sm">{cardLabel}</p>
-      <div className="mt-6 grid w-full gap-2">
-        <ShareButton className="press h-11 rounded-[12px] bg-forest text-sm font-semibold text-white" label="Share my card" />
-        <CopyLink />
-        <Link href="/" className="press flex h-11 items-center justify-center rounded-[14px] border border-ink/10 text-sm font-semibold">
-          Open digital card
-        </Link>
+    <main id="content" className="grid min-h-dvh place-items-center px-4 py-8">
+      <div className="w-full max-w-[400px] rounded-[28px] border border-forest/10 bg-card px-6 py-8 text-center shadow-[0_18px_36px_rgba(22,24,29,0.08)]">
+        <Image src="/branding/mulsetu-logo-on-dark.png" alt="Mulsetu" width={656} height={443} className="mx-auto h-auto w-[84px]" />
+        <h1 className="mt-4 font-serif text-[2.1rem] leading-none font-semibold">Scan to connect</h1>
+        <p className="mt-1 text-sm text-muted">
+          {profile.name} · {profile.title}
+        </p>
+        <div className="mx-auto mt-6 w-full max-w-[280px] rounded-[20px] bg-white p-3 shadow-[0_1px_2px_rgba(22,24,29,0.06)] ring-1 ring-ink/8 [&_svg]:h-auto [&_svg]:w-full">
+          <QrCode size={280} framed={false} />
+        </div>
+        <p className="mt-4 text-sm font-medium text-leaf">{cardLabel}</p>
+        <div className="mt-6 grid w-full gap-2">
+          <ShareButton className="press h-11 rounded-full text-sm font-semibold text-white [background:var(--mulsetu-brand)]" label="Share my card" />
+          <CopyLink />
+          <Link href="/" className="press flex h-11 items-center justify-center rounded-full border border-ink/10 bg-white text-sm font-semibold">
+            Open digital card
+          </Link>
+        </div>
       </div>
     </main>
   );
