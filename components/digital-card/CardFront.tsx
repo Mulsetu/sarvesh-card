@@ -15,15 +15,16 @@ export function CardFront({ onFlip }: { onFlip: () => void }) {
 
       <Image src="/branding/mulsetu-logo-on-dark.png" alt="Mulsetu" width={656} height={443} priority className="relative h-auto w-[84px]" />
 
+      <div className="face-gap" aria-hidden="true" />
       <div
-        className="portrait relative mt-5 rounded-full p-[2px] shadow-[0_14px_30px_-8px_rgba(25,104,108,0.35)]"
+        className="portrait relative rounded-full p-[2px] shadow-[0_14px_30px_-8px_rgba(25,104,108,0.35)]"
         style={{ background: "linear-gradient(135deg, #3e6700, #19686c)" }}
       >
         <div className="relative size-full overflow-hidden rounded-full bg-card p-[4px]">
           <div className="relative size-full overflow-hidden rounded-full">
             {/* Oversized frame zooms in on the face without transforms (Safari clips those unreliably). */}
             <div className="absolute" style={{ left: "-59%", top: "-9%", width: "190%", height: "190%" }}>
-              <Image src={profile.photo} alt={profile.name} fill priority sizes="260px" className="object-cover object-[57%_0%]" />
+              <Image src={profile.photo} alt={profile.name} fill priority sizes="290px" className="object-cover object-[57%_0%]" />
             </div>
           </div>
         </div>
@@ -33,11 +34,12 @@ export function CardFront({ onFlip }: { onFlip: () => void }) {
       <p className="eyebrow relative mt-2.5 text-forest">{profile.title}</p>
       <p className="relative mt-1 text-[13px] text-muted">{profile.company}</p>
 
-      <div className="brand-rule relative mt-5 max-w-[240px]" aria-hidden="true">
+      <div className="face-gap" aria-hidden="true" />
+      <div className="brand-rule relative max-w-[240px]" aria-hidden="true">
         <span />
       </div>
 
-      <div className="card-details relative mt-4 grid w-fit max-w-full gap-2 text-left">
+      <div className="card-details relative mt-4 grid w-fit max-w-full gap-2.5 text-left">
         {call ? (
           <a href={call}>
             <Phone aria-hidden="true" />
@@ -58,7 +60,7 @@ export function CardFront({ onFlip }: { onFlip: () => void }) {
         ) : null}
       </div>
 
-      <div className="min-h-5 flex-1" aria-hidden="true" />
+      <div className="face-gap" aria-hidden="true" />
       <button
         type="button"
         onClick={onFlip}

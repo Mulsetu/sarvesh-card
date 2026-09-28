@@ -259,6 +259,16 @@ body {
   border-radius: 18px;
 }
 
+/*
+ * Both faces share one height (the taller one wins), and that height changes with
+ * screen width. Equal flexible gaps spread any extra height evenly between the
+ * front's sections instead of pooling it above the Flip button.
+ */
+.face-gap {
+  flex: 1 1 0;
+  min-height: 20px;
+}
+
 .connect-qr svg {
   display: block;
   width: clamp(64px, 21vw, 84px);
@@ -266,7 +276,7 @@ body {
 }
 
 .portrait {
-  width: clamp(112px, 33vw, 132px);
+  width: clamp(124px, 38vw, 148px);
   aspect-ratio: 1;
 }
 
