@@ -274,7 +274,7 @@ function IconDot({ name, size }: { name: IconName; size: number }) {
 
 export function CombinedCard({ photo, logo, mark }: { photo: string; logo: string; mark: string }) {
   const { width: w, height: h } = combinedSize;
-  const portrait = 250;
+  const portrait = 232;
   const inner = portrait - 16;
   // Face crop scaled from the 120px front-card circle (see FrontCard).
   const k = inner / 120;
@@ -286,9 +286,10 @@ export function CombinedCard({ photo, logo, mark }: { photo: string; logo: strin
 
       {/* Front half */}
       <div style={{ position: "absolute", left: 0, top: 0, width: 640, height: h, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "0 56px" }}>
-        <div style={{ width: "100%", display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logo} alt="" width={170} height={115} style={{ marginTop: 10 }} />
+        {/* Same stack as the live front: logo, then the photo centred beneath it. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={logo} alt="" width={132} height={89} />
+        <div style={{ marginTop: 24, display: "flex", boxShadow: "0 18px 36px -12px rgba(25,104,108,0.4)", borderRadius: portrait / 2 }}>
           <div style={{ width: portrait, height: portrait, display: "flex", padding: 5, borderRadius: portrait / 2, backgroundImage: `linear-gradient(135deg, ${c.forest}, ${c.teal})` }}>
             <div style={{ display: "flex", width: portrait - 10, height: portrait - 10, padding: 3, borderRadius: portrait / 2, backgroundColor: c.card }}>
               <div style={{ position: "relative", display: "flex", width: inner, height: inner, borderRadius: inner / 2, overflow: "hidden" }}>
@@ -299,15 +300,15 @@ export function CombinedCard({ photo, logo, mark }: { photo: string; logo: strin
           </div>
         </div>
 
-        <div style={{ marginTop: 36, display: "flex", fontFamily: "Cormorant", fontWeight: 600, fontSize: 82, lineHeight: 1 }}>{profile.name}</div>
-        <div style={{ marginTop: 20, display: "flex", alignItems: "center", gap: 20 }}>
+        <div style={{ marginTop: 28, display: "flex", fontFamily: "Cormorant", fontWeight: 600, fontSize: 80, lineHeight: 1 }}>{profile.name}</div>
+        <div style={{ marginTop: 18, display: "flex", alignItems: "center", gap: 20 }}>
           <div style={{ width: 70, height: 2, backgroundColor: c.forest, opacity: 0.6 }} />
           <div style={{ display: "flex", fontSize: 29, fontWeight: 700, letterSpacing: 5, color: c.forest }}>{profile.title.toUpperCase()}</div>
           <div style={{ width: 70, height: 2, backgroundColor: c.teal, opacity: 0.6 }} />
         </div>
-        <div style={{ marginTop: 12, display: "flex", fontSize: 27, color: "rgba(22,24,29,0.82)" }}>{profile.company}</div>
+        <div style={{ marginTop: 10, display: "flex", fontSize: 27, color: "rgba(22,24,29,0.82)" }}>{profile.company}</div>
 
-        <div style={{ marginTop: 44, display: "flex", flexDirection: "column", gap: 20 }}>
+        <div style={{ marginTop: 36, display: "flex", flexDirection: "column", gap: 16 }}>
           {(
             [
               ["phone", displayPhone(profile.phone)],
@@ -315,8 +316,8 @@ export function CombinedCard({ photo, logo, mark }: { photo: string; logo: strin
               ["globe", displayWebsite(profile.website)],
             ] as [IconName, string][]
           ).map(([icon, text]) => (
-            <div key={text} style={{ display: "flex", alignItems: "center", gap: 22, fontSize: 31, color: c.ink }}>
-              <IconDot name={icon} size={58} />
+            <div key={text} style={{ display: "flex", alignItems: "center", gap: 22, fontSize: 30, color: c.ink }}>
+              <IconDot name={icon} size={54} />
               {text}
             </div>
           ))}
