@@ -1,11 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CardBack } from "@/components/digital-card/CardBack";
 import { CardFront } from "@/components/digital-card/CardFront";
 
 export function FlipCard({ startFlipped = false }: { startFlipped?: boolean }) {
   const [flipped, setFlipped] = useState(startFlipped);
+
+  useEffect(() => {
+    if (startFlipped) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const timer = window.setTimeout(() => {
+      setFlipped((current) => current || true);
+    }, 3500);
+
+    return () => window.clearTimeout(timer);
+  }, [startFlipped]);
 
   return (
     <div className="card-scene">

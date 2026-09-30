@@ -264,6 +264,33 @@ body {
  * screen width. Equal flexible gaps spread any extra height evenly between the
  * front's sections instead of pooling it above the Flip button.
  */
+.flip-cta {
+  background: linear-gradient(100deg, #3e6700 0%, #19686c 100%);
+  box-shadow:
+    0 0 0 4px rgba(62, 103, 0, 0.16),
+    0 8px 18px rgba(62, 103, 0, 0.28);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .flip-cta {
+    animation: flip-glow 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes flip-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 4px rgba(62, 103, 0, 0.16),
+      0 8px 18px rgba(62, 103, 0, 0.28);
+  }
+  50% {
+    box-shadow:
+      0 0 0 7px rgba(25, 104, 108, 0.2),
+      0 10px 22px rgba(62, 103, 0, 0.36);
+  }
+}
+
 .face-gap {
   flex: 1 1 0;
   min-height: 20px;

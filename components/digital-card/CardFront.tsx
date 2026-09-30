@@ -64,9 +64,9 @@ export function CardFront({ onFlip }: { onFlip: () => void }) {
       <button
         type="button"
         onClick={onFlip}
-        className="press relative inline-flex h-9 shrink-0 items-center gap-2 rounded-full border border-forest/15 bg-white/80 px-4 text-[12.5px] font-semibold text-ink/80 shadow-[0_1px_2px_rgba(22,24,29,0.05)]"
+        className="flip-cta press relative inline-flex h-11 shrink-0 items-center gap-2 rounded-full px-5 text-[13px] font-semibold text-white"
       >
-        <RotateCcw className="size-3.5 text-forest" aria-hidden="true" />
+        <RotateCcw className="size-4" aria-hidden="true" />
         Flip card
       </button>
     </div>
